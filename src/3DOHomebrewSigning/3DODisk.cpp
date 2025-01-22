@@ -847,7 +847,7 @@ bool C3DODisk::FillSignatures(FILE *Handle)
   // Seek to the start of the cdrom
   fseek(Handle, 0, SEEK_SET);
 
-  char	*pSignatures = m_pSignatures;
+  u8 *pSignatures = m_pSignatures;
 
   int	iSignatures = m_iSectorCount;
 
