@@ -421,7 +421,7 @@ bool C3DODisk::CalculateBootCodeChecksum(FILE *Handle)
       return	false;
     }
 
-  char	*pBootCode = new char[m_iBootCodeSize];
+  u8 *pBootCode = new u8[m_iBootCodeSize];
 
   if (NULL == pBootCode)
     {
