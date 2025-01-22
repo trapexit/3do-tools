@@ -812,7 +812,7 @@ bool C3DODisk::CalculateSignatures(FILE *Handle)
 
   printf("Signtures space used: %X\n", m_iSignatureSize);
 
-  m_pSignatures = new char[s_iSignatureSize];
+  m_pSignatures = new u8[s_iSignatureSize];
 
   if (NULL == m_pSignatures)
     {
