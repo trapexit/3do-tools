@@ -886,7 +886,7 @@ bool C3DODisk::FillSignatures(FILE *Handle)
   CalculateMD5(m_pSignatures, m_iSignatureSize - 64, uSignatureMD5);
 
   // Convert MD5 to a string
-  u8 zSignatureMD5[64];
+  u8 szSignatureMD5[64];
 
   szSignatureMD5[0] = 0;
 
