@@ -587,7 +587,7 @@ bool C3DODisk::CalculateMiscCodeChecksum(FILE *Handle)
       return	false;
     }
 
-  char	*pMiscCode = new char[iMiscCodeSize];
+  u8 *pMiscCode = new u8[iMiscCodeSize];
 
   if (NULL == pMiscCode)
     {
