@@ -17,7 +17,7 @@ static const int	s_iBannerStart = 0xE2;
 static const int	s_iBannerLength = 0x25858;
 static const char	s_szFiller[9] = "iamaduck";
 
-static const BYTE	s_uRomTags[] =
+static const u8	s_uRomTags[] =
   {
     0x0F, 0x0D, 0x02, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x17, 0x6C,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -326,7 +326,7 @@ bool C3DODisk::FixISO(FILE *Handle)
 
       for (int iLoop = 0; iLoop < iWriteLength; ++iLoop)
         {
-          BYTE	Value = s_szFiller[iLoop % 8];
+          u8	Value = s_szFiller[iLoop % 8];
 
           fwrite(&Value, 1, 1, Handle);
         }
@@ -420,7 +420,7 @@ bool C3DODisk::CalculateBootCodeChecksum(FILE *Handle)
       return	false;
     }
 
-  BYTE	*pBootCode = new BYTE[m_iBootCodeSize];
+  u8	*pBootCode = new u8[m_iBootCodeSize];
 
   if (NULL == pBootCode)
     {
@@ -433,7 +433,7 @@ bool C3DODisk::CalculateBootCodeChecksum(FILE *Handle)
   fseek(Handle, m_iBootCodeStart * 2048, SEEK_SET);
   fread(pBootCode, m_iBootCodeSize, 1, Handle);
 
-  BYTE	uBootMD5[16];
+  u8	uBootMD5[16];
 
   CalculateMD5(pBootCode, m_iBootCodeSize - 64, uBootMD5);
 
@@ -502,7 +502,7 @@ bool C3DODisk::CalculateOSCodeChecksum(FILE *Handle)
       return	false;
     }
 
-  BYTE	*pOSCode = new BYTE[iOSCodeSize];
+  u8	*pOSCode = new u8[iOSCodeSize];
 
   if (NULL == pOSCode)
     {
@@ -515,7 +515,7 @@ bool C3DODisk::CalculateOSCodeChecksum(FILE *Handle)
   fseek(Handle, iOSCodeOffset, SEEK_SET);
   fread(pOSCode, iOSCodeSize, 1, Handle);
 
-  BYTE	uOSMD5[16];
+  u8	uOSMD5[16];
 
   CalculateMD5(pOSCode, iOSCodeSize - 64, uOSMD5);
 
@@ -535,7 +535,7 @@ bool C3DODisk::CalculateOSCodeChecksum(FILE *Handle)
 
   printf("os_code MD5 value is %s\n\n", szOSMD5);
 
-  BYTE	uOSRSA[64];
+  u8	uOSRSA[64];
 
   CalculateRSA(szOSMD5, uOSRSA, true);
 
@@ -586,7 +586,7 @@ bool C3DODisk::CalculateMiscCodeChecksum(FILE *Handle)
       return	false;
     }
 
-  BYTE	*pMiscCode = new BYTE[iMiscCodeSize];
+  u8	*pMiscCode = new u8[iMiscCodeSize];
 
   if (NULL == pMiscCode)
     {
@@ -599,7 +599,7 @@ bool C3DODisk::CalculateMiscCodeChecksum(FILE *Handle)
   fseek(Handle, iMiscCodeOffset, SEEK_SET);
   fread(pMiscCode, iMiscCodeSize, 1, Handle);
 
-  BYTE	uMiscMD5[16];
+  u8	uMiscMD5[16];
 
   CalculateMD5(pMiscCode, iMiscCodeSize - 64, uMiscMD5);
 
@@ -619,7 +619,7 @@ bool C3DODisk::CalculateMiscCodeChecksum(FILE *Handle)
 
   printf("misc_code MD5 value is %s\n\n", szMiscMD5);
 
-  BYTE	uMiscRSA[64];
+  u8	uMiscRSA[64];
 
   CalculateRSA(szMiscMD5, uMiscRSA, true);
 
@@ -655,7 +655,7 @@ bool C3DODisk::CalculateBootChecksum(FILE *Handle)
   // Add in the size of the boot code
   iDataSize += m_iBootCodeSize;
 
-  BYTE	*pBootCode = new BYTE[iDataSize];
+  u8	*pBootCode = new u8[iDataSize];
 
   if (NULL == pBootCode)
     {
@@ -683,7 +683,7 @@ bool C3DODisk::CalculateBootChecksum(FILE *Handle)
 
   assert(iReadOffset == iDataSize);
 
-  BYTE	uBootMD5[16];
+  u8	uBootMD5[16];
 
   CalculateMD5(pBootCode, iDataSize, uBootMD5);
 
@@ -747,7 +747,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
       return	false;
     }
 
-  BYTE	*pBannerBuffer = new BYTE[iBannerSize - 64];
+  u8	*pBannerBuffer = new u8[iBannerSize - 64];
 
   if (NULL == pBannerBuffer)
     {
@@ -760,7 +760,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
 
   fread(pBannerBuffer, 1, iBannerSize - 64, Handle);
 
-  BYTE	uBannerMD5[16];
+  u8	uBannerMD5[16];
 
   CalculateMD5(pBannerBuffer, iBannerSize - 64, uBannerMD5);
 
@@ -781,7 +781,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
   printf("Banner MD5 value is %s\n\n", szBannerMD5);
 
   // Banner RSA value
-  BYTE	uBannerRSA[64];
+  u8	uBannerRSA[64];
 
   CalculateRSA(szBannerMD5, uBannerRSA);
 
@@ -811,7 +811,7 @@ bool C3DODisk::CalculateSignatures(FILE *Handle)
 
   printf("Signtures space used: %X\n", m_iSignatureSize);
 
-  m_pSignatures = new BYTE[s_iSignatureSize];
+  m_pSignatures = new u8[s_iSignatureSize];
 
   if (NULL == m_pSignatures)
     {
@@ -846,13 +846,13 @@ bool C3DODisk::FillSignatures(FILE *Handle)
   // Seek to the start of the cdrom
   fseek(Handle, 0, SEEK_SET);
 
-  BYTE	*pSignatures = m_pSignatures;
+  u8	*pSignatures = m_pSignatures;
 
   int	iSignatures = m_iSectorCount;
 
   for (int iLoop = 0; iLoop < iSignatures * 2048; iLoop += 16 * 2048)
     {
-      BYTE	Buffer[16 * 2048];
+      u8	Buffer[16 * 2048];
 
       fread(Buffer, 2048, 16, Handle);
 
@@ -880,7 +880,7 @@ bool C3DODisk::FillSignatures(FILE *Handle)
   pSignatures += 2048 - 64;
 
   // Calculate MD5 on the signatures
-  BYTE	uSignatureMD5[16];
+  u8	uSignatureMD5[16];
 
   CalculateMD5(m_pSignatures, m_iSignatureSize - 64, uSignatureMD5);
 
