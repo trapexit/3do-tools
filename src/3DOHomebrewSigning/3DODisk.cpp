@@ -772,7 +772,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
 
   for (int iLoop = 0; iLoop < sizeof(uBannerMD5); ++iLoop)
     {
-      char	szHexDigits[4];
+      char szHexDigits[4];
 
       sprintf(szHexDigits, "%02X", uBannerMD5[iLoop]);
 
