@@ -605,7 +605,7 @@ bool C3DODisk::CalculateMiscCodeChecksum(FILE *Handle)
   CalculateMD5(pMiscCode, iMiscCodeSize - 64, uMiscMD5);
 
   // Misc MD5 value
-  char	szMiscMD5[64];
+  u8 zzMiscMD5[64];
 
   szMiscMD5[0] = 0;
 
