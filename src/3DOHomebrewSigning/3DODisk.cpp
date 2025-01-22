@@ -449,7 +449,7 @@ bool C3DODisk::CalculateBootCodeChecksum(FILE *Handle)
 
       sprintf(szHexDigits, "%02X", uBootMD5[iLoop]);
 
-      strcat(szBootMD5, szHexDigits);
+      strcat((char*)szBootMD5, szHexDigits);
     }
 
   printf("boot_code MD5 value is %s\n\n", szBootMD5);
