@@ -689,7 +689,7 @@ bool C3DODisk::CalculateBootChecksum(FILE *Handle)
   CalculateMD5(pBootCode, iDataSize, uBootMD5);
 
   // Boot MD5 value
-  char	szBootMD5[64];
+  u8 szBootMD5[64];
 
   szBootMD5[0] = 0;
 
