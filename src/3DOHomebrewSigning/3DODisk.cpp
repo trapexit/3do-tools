@@ -167,11 +167,11 @@ bool C3DODisk::ReadRomTags(FILE *Handle)
     {
       sRomTag	RomTag;
 
-      DWORD	Value;
+      u32	Value;
 
       // Read tag type
-      fread(&Value, sizeof(DWORD), 1, Handle);
-      Value = DWORDSwap(Value);
+      fread(&Value, sizeof(u32), 1, Handle);
+      Value = u32Swap(Value);
 
       if (Value != 0x00000000 && (Value & 0xFF000000) != 0x0F000000)
         {
@@ -183,18 +183,18 @@ bool C3DODisk::ReadRomTags(FILE *Handle)
       RomTag.TagType = (Value & 0x00FF0000) >> 16;
 
       // Read data
-      fread(&Value, sizeof(DWORD), 1, Handle);
+      fread(&Value, sizeof(u32), 1, Handle);
 
-      fread(&Value, sizeof(DWORD), 1, Handle);
-      RomTag.Offset = DWORDSwap(Value);
+      fread(&Value, sizeof(u32), 1, Handle);
+      RomTag.Offset = u32Swap(Value);
 
-      fread(&Value, sizeof(DWORD), 1, Handle);
-      RomTag.Length = DWORDSwap(Value);
+      fread(&Value, sizeof(u32), 1, Handle);
+      RomTag.Length = u32Swap(Value);
 
-      fread(&Value, sizeof(DWORD), 1, Handle);
-      fread(&Value, sizeof(DWORD), 1, Handle);
-      fread(&Value, sizeof(DWORD), 1, Handle);
-      fread(&Value, sizeof(DWORD), 1, Handle);
+      fread(&Value, sizeof(u32), 1, Handle);
+      fread(&Value, sizeof(u32), 1, Handle);
+      fread(&Value, sizeof(u32), 1, Handle);
+      fread(&Value, sizeof(u32), 1, Handle);
 
       switch (RomTag.TagType)
         {
@@ -293,15 +293,15 @@ bool C3DODisk::ReadRomTags(FILE *Handle)
 
 bool C3DODisk::FixISO(FILE *Handle)
 {
-  DWORD	Value;
+  u32	Value;
 
   printf("Fixing the ISO image...\n");
 
   // Read the sector count from the disk label
   fseek(Handle, s_iUsedSectorsCount, SEEK_SET);
-  fread(&Value, sizeof(DWORD), 1, Handle);
+  fread(&Value, sizeof(u32), 1, Handle);
 
-  m_iSectorCount = DWORDSwap(Value);
+  m_iSectorCount = u32Swap(Value);
 
   // Round sector count up to nearest 16.
   if ((m_iSectorCount & 0x0F) != 0)
@@ -337,59 +337,59 @@ bool C3DODisk::FixISO(FILE *Handle)
     {
       // Update used sector count
       iNewLength /= 2048;
-      iNewLength = DWORDSwap(iNewLength);
+      iNewLength = u32Swap(iNewLength);
 
       printf("Updating the used sector count...\n");
 
       fseek(Handle, s_iUsedSectorsCount, SEEK_SET);
-      fwrite(&iNewLength, sizeof(DWORD), 1, Handle);
+      fwrite(&iNewLength, sizeof(u32), 1, Handle);
     }
 
   // Update launchme tag
   printf("Writing launchme start...\n");
 
   Value = m_iLaunchMeStart - 1;
-  Value = DWORDSwap(Value);
+  Value = u32Swap(Value);
 
   fseek(Handle, m_iLaunchMeTagStart + 8, SEEK_SET);
-  fwrite(&Value, sizeof(DWORD), 1, Handle);
+  fwrite(&Value, sizeof(u32), 1, Handle);
 
   printf("Writing launchme size...\n");
 
   Value = m_iLaunchMeSize;
-  Value = DWORDSwap(Value);
+  Value = u32Swap(Value);
 
-  fwrite(&Value, sizeof(DWORD), 1, Handle);
+  fwrite(&Value, sizeof(u32), 1, Handle);
 
   // Update signatures tag
   printf("Writing signature start...\n");
 
   Value = m_iSignatureStart - 1;
-  Value = DWORDSwap(Value);
+  Value = u32Swap(Value);
 
   fseek(Handle, m_iSignaturesTagStart + 8, SEEK_SET);
-  fwrite(&Value, sizeof(DWORD), 1, Handle);
+  fwrite(&Value, sizeof(u32), 1, Handle);
 
   printf("Writing signature size...\n");
 
-  Value = DWORDSwap(m_iSignatureSize);
-  fwrite(&Value, sizeof(DWORD), 1, Handle);
+  Value = u32Swap(m_iSignatureSize);
+  fwrite(&Value, sizeof(u32), 1, Handle);
 
   // Update bannerscreen tag
   printf("Writing bannerscreen start...\n");
 
   Value = s_iBannerStart;
-  Value = DWORDSwap(Value);
+  Value = u32Swap(Value);
 
   fseek(Handle, m_iBannerTagStart + 8, SEEK_SET);
-  fwrite(&Value, sizeof(DWORD), 1, Handle);
+  fwrite(&Value, sizeof(u32), 1, Handle);
 
   printf("Writing bannerscreen size...\n");
 
   Value = s_iBannerLength;
-  Value = DWORDSwap(Value);
+  Value = u32Swap(Value);
 
-  fwrite(&Value, sizeof(DWORD), 1, Handle);
+  fwrite(&Value, sizeof(u32), 1, Handle);
 
   return	true;
 }
@@ -942,12 +942,12 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
   // The last 32 bytes contain sector numbers for the root directory. (Multiple copies?)
   fseek(Handle, s_iDiskLabelSize - 32, SEEK_SET);
 
-  DWORD	Value;
+  u32	Value;
 
   // Read the starting sector number for the root directory;
-  fread(&Value, sizeof(DWORD), 1, Handle);
+  fread(&Value, sizeof(u32), 1, Handle);
 
-  Value = DWORDSwap(Value);
+  Value = u32Swap(Value);
   Value *= 2048;
 
   // Skip the header info
@@ -963,9 +963,9 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
       // Read the number of directory entries
       fseek(Handle, 12, SEEK_CUR);
 
-      fread(&Value, sizeof(DWORD), 1, Handle);
+      fread(&Value, sizeof(u32), 1, Handle);
 
-      DWORD	NumEntries = DWORDSwap(Value) / s_iDirEntrySize;
+      u32	NumEntries = u32Swap(Value) / s_iDirEntrySize;
 
       //If the number of files in this block is invalid, exit
       if (NumEntries <= 0 || NumEntries > 28)
@@ -982,9 +982,9 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
         }
 
       // Read Offset
-      fread(&Value, sizeof(DWORD), 1, Handle);
+      fread(&Value, sizeof(u32), 1, Handle);
 
-      Value = DWORDSwap(Value) - 0x14;
+      Value = u32Swap(Value) - 0x14;
 
       // Skip to first entry
       if (Value > 0)
@@ -992,22 +992,22 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
           fseek(Handle, Value, SEEK_CUR);
         }
 
-      for (DWORD iLoop = 0; iLoop < NumEntries; ++iLoop)
+      for (u32 iLoop = 0; iLoop < NumEntries; ++iLoop)
         {
           char	EntryName[s_iFilenameSize];
 
           // Read the type
-          fread(&Value, sizeof(DWORD), 1, Handle);
+          fread(&Value, sizeof(u32), 1, Handle);
 
-          Value = DWORDSwap(Value);
+          Value = u32Swap(Value);
 
           // Skip flags and stuff
           fseek(Handle, 12, SEEK_CUR);
 
           // Get the file size
-          fread(&Value, sizeof(DWORD), 1, Handle);
+          fread(&Value, sizeof(u32), 1, Handle);
 
-          int	iFileSize = DWORDSwap(Value);
+          int	iFileSize = u32Swap(Value);
 
           // Skip flags and stuff
           fseek(Handle, 12, SEEK_CUR);
@@ -1022,9 +1022,9 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
               fseek(Handle, 4, SEEK_CUR);
 
               // Get the starting address
-              fread(&Value, sizeof(DWORD), 1, Handle);
+              fread(&Value, sizeof(u32), 1, Handle);
 
-              m_iLaunchMeStart = DWORDSwap(Value);
+              m_iLaunchMeStart = u32Swap(Value);
               m_iLaunchMeSize = iFileSize;
               bFoundLaunchme = true;
 
@@ -1038,9 +1038,9 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
               fseek(Handle, 4, SEEK_CUR);
 
               // Get the starting address
-              fread(&Value, sizeof(DWORD), 1, Handle);
+              fread(&Value, sizeof(u32), 1, Handle);
 
-              m_iSignatureStart = DWORDSwap(Value);
+              m_iSignatureStart = u32Swap(Value);
               m_iSignatureSize = iFileSize;
               bFoundSignatures = true;
 
@@ -1050,9 +1050,9 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
           else
             {
               // Get the entry count
-              fread(&Value, sizeof(DWORD), 1, Handle);
+              fread(&Value, sizeof(u32), 1, Handle);
 
-              Value = DWORDSwap(Value);
+              Value = u32Swap(Value);
 
               if (Value > 0)
                 {
