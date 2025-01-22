@@ -1,9 +1,10 @@
 #include <stdio.h>
 
+#include "types.h"
 #include "bigd.h"
 #include "md5.h"
 
-void CalculateMD5(unsigned char *_pBuffer, int _iDataSize, unsigned char *_pMD5)
+void CalculateMD5(u8 *_pBuffer, int _iDataSize, u8 *_pMD5)
 {
   // MD5 context
   MD5_CTX	sMD5Context;
