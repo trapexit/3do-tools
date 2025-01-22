@@ -3,7 +3,7 @@
 #include "types.h"
 
 // Calculate MD5 checksum
-void CalculateMD5(u8 *_pBuffer, int _iDataSize, u8 *_pMD5);
+void CalculateMD5(char *_pBuffer, int _iDataSize, char *_pMD5);
 
 // Calculate RSA
-void CalculateRSA(u8 *pMessage, u8 *_pRSA, bool _bUseKey2 = false);
+void CalculateRSA(char *pMessage, char *_pRSA, bool _bUseKey2 = false);
