@@ -761,7 +761,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
 
   fread(pBannerBuffer, 1, iBannerSize - 64, Handle);
 
-  char	uBannerMD5[16];
+  u8 uBannerMD5[16];
 
   CalculateMD5(pBannerBuffer, iBannerSize - 64, uBannerMD5);
 
