@@ -16,7 +16,7 @@ void CalculateMD5(u8 *_pBuffer, int _iDataSize, u8 *_pMD5)
   MD5Final(_pMD5, &sMD5Context);
 }
 
-void CalculateRSA(unsigned char *pMessage, unsigned char *_pRSA, bool _bUseKey2)
+void CalculateRSA(u8 *pMessage, u8 *_pRSA, bool _bUseKey2)
 {
   BIGD	n1	= bdNew();
   BIGD	d1	= bdNew();
