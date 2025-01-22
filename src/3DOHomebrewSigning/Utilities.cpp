@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <windows.h>
 
 #include "bigd.h"
 #include "md5.h"
