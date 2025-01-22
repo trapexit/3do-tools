@@ -776,7 +776,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
 
       sprintf(szHexDigits, "%02X", uBannerMD5[iLoop]);
 
-      strcat(szBannerMD5, szHexDigits);
+      strcat((char*)szBannerMD5, szHexDigits);
     }
 
   printf("Banner MD5 value is %s\n\n", szBannerMD5);
