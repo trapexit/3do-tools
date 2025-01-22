@@ -9,32 +9,32 @@
 
 int main(int argc, char *argv[]) 
 {
-	bool	bGenRomTags	= false;
+  bool	bGenRomTags	= false;
 	
-	printf("3DO homebrew encryption v0.6a\n");
-	printf("\tBy Charles Doty\n\n");
+  printf("3DO homebrew encryption v0.6a\n");
+  printf("\tBy Charles Doty\n\n");
 	
-	if (argc < 2)
-	{
-		printf("Usage: 3DOHomebrewSigning [genromtags] File.iso\n");
-    exit(1);
-	}
+  if (argc < 2)
+    {
+      printf("Usage: 3DOHomebrewSigning [genromtags] File.iso\n");
+      exit(1);
+    }
 
-	C3DODisk	*p3DODisk	= new C3DODisk();
+  C3DODisk	*p3DODisk	= new C3DODisk();
 
-	// Set the generate rom tags flag 
-	if (!strcmp("genromtags", argv[1]))
-	{
-		bGenRomTags	= true;
-	}
+  // Set the generate rom tags flag 
+  if (!strcmp("genromtags", argv[1]))
+    {
+      bGenRomTags	= true;
+    }
 		
-	// Set the iso name, and parse the needed info
-	if (false == p3DODisk->SetISO(argv[argc - 1], bGenRomTags))
-	{
-		// Some error happened
-		return	1;
-	}
+  // Set the iso name, and parse the needed info
+  if (false == p3DODisk->SetISO(argv[argc - 1], bGenRomTags))
+    {
+      // Some error happened
+      return	1;
+    }
 
-	// Write changes
-	p3DODisk->WriteChanges();
+  // Write changes
+  p3DODisk->WriteChanges();
 }
