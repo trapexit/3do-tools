@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-#include "types.h"
 #include "bigd.h"
 #include "md5.h"
 
