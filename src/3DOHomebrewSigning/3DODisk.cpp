@@ -684,7 +684,7 @@ bool C3DODisk::CalculateBootChecksum(FILE *Handle)
 
   assert(iReadOffset == iDataSize);
 
-  char	uBootMD5[16];
+  u8 uBootMD5[16];
 
   CalculateMD5(pBootCode, iDataSize, uBootMD5);
 
