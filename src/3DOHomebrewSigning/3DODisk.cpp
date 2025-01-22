@@ -942,7 +942,7 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
   // The last 32 bytes contain sector numbers for the root directory. (Multiple copies?)
   fseek(Handle, s_iDiskLabelSize - 32, SEEK_SET);
 
-  u32	Value;
+  u32 Value;
 
   // Read the starting sector number for the root directory;
   fread(&Value, sizeof(u32), 1, Handle);
