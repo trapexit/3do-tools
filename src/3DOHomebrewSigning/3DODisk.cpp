@@ -531,7 +531,7 @@ bool C3DODisk::CalculateOSCodeChecksum(FILE *Handle)
 
       sprintf(szHexDigits, "%02X", uOSMD5[iLoop]);
 
-      strcat(szOSMD5, szHexDigits);
+      strcat((char*)szOSMD5, szHexDigits);
     }
 
   printf("os_code MD5 value is %s\n\n", szOSMD5);
