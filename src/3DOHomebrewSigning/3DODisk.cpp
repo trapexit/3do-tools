@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 
+#include "types.h"
 #include "3DODisk.h"
 #include "Utilities.h"
 
