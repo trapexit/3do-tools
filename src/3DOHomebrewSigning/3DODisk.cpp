@@ -782,7 +782,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
   printf("Banner MD5 value is %s\n\n", szBannerMD5);
 
   // Banner RSA value
-  char	uBannerRSA[64];
+  u8 uBannerRSA[64];
 
   CalculateRSA(szBannerMD5, uBannerRSA);
 
