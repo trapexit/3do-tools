@@ -54,10 +54,10 @@ protected:
   int		m_iBootCodeSize;
 
   // Signature buffer
-  char	*m_pSignatures;
+  u8 *m_pSignatures;
 		
   // Boot RSA value
-  char	m_uBootRSA[64];
+  u8 m_uBootRSA[64];
 		
   // Sector count
   int		m_iSectorCount;
