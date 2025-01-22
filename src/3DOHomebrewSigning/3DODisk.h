@@ -1,5 +1,7 @@
 #pragma once
 
+#include "types.h"
+
 #include <vector>
 #include <string>
 
@@ -52,10 +54,10 @@ protected:
   int		m_iBootCodeSize;
 
   // Signature buffer
-  BYTE	*m_pSignatures;
+  u8	*m_pSignatures;
 		
   // Boot RSA value
-  BYTE	m_uBootRSA[64];
+  u8	m_uBootRSA[64];
 		
   // Sector count
   int		m_iSectorCount;
