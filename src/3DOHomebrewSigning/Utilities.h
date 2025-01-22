@@ -1,5 +1,7 @@
 #pragma once
 
+#include "types.h"
+
 // Calculate MD5 checksum
 void CalculateMD5(u8 *_pBuffer, int _iDataSize, u8 *_pMD5);
 
