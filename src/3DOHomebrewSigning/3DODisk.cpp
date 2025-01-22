@@ -766,7 +766,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
   CalculateMD5(pBannerBuffer, iBannerSize - 64, uBannerMD5);
 
   // Banner MD5 value
-  char	szBannerMD5[64];
+  u8 szBannerMD5[64];
 
   szBannerMD5[0] = 0;
 
