@@ -4,7 +4,7 @@
 #include <string>
 
 using namespace std;
-#define	VOLUME_SYNC_BYTE_LEN	5
+#define	VOLUME_SYNC_BYTE_LEN	5
 #define	VOLUME_COM_LEN			32
 #define	VOLUME_ID_LEN			32
 #define ROOT_HIGHEST_AVATAR		7
