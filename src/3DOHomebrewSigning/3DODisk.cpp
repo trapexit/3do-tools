@@ -896,7 +896,7 @@ bool C3DODisk::FillSignatures(FILE *Handle)
 
       sprintf(szHexDigits, "%02X", uSignatureMD5[iLoop]);
 
-      strcat(szSignatureMD5, szHexDigits);
+      strcat((char*)szSignatureMD5, szHexDigits);
     }
 
   printf("Signatures MD5 value is %s\n\n", szSignatureMD5);
