@@ -1,7 +1,5 @@
 #pragma once
 
-#include <windows.h>
-
 // Calculate MD5 checksum
 void CalculateMD5(BYTE *_pBuffer, int _iDataSize, BYTE *_pMD5);
 
