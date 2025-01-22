@@ -1032,7 +1032,7 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
             }
 
           // Found the signature file, get the starting sector number
-          else if (!_stricmp("signatures", EntryName))
+          else if (!strcasecmp("signatures", EntryName))
             {
               // Skip the entry count
               fseek(Handle, 4, SEEK_CUR);
