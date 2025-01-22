@@ -615,7 +615,7 @@ bool C3DODisk::CalculateMiscCodeChecksum(FILE *Handle)
 
       sprintf(szHexDigits, "%02X", uMiscMD5[iLoop]);
 
-      strcat(szMiscMD5, szHexDigits);
+      strcat((char*)szMiscMD5, szHexDigits);
     }
 
   printf("misc_code MD5 value is %s\n\n", szMiscMD5);
