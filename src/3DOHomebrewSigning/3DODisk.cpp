@@ -536,7 +536,7 @@ bool C3DODisk::CalculateOSCodeChecksum(FILE *Handle)
 
   printf("os_code MD5 value is %s\n\n", szOSMD5);
 
-  char	uOSRSA[64];
+  u8 uOSRSA[64];
 
   CalculateRSA(szOSMD5, uOSRSA, true);
 
