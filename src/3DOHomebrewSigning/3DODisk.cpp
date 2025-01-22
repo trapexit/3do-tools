@@ -620,7 +620,7 @@ bool C3DODisk::CalculateMiscCodeChecksum(FILE *Handle)
 
   printf("misc_code MD5 value is %s\n\n", szMiscMD5);
 
-  char	uMiscRSA[64];
+  u8 uMiscRSA[64];
 
   CalculateRSA(szMiscMD5, uMiscRSA, true);
 
