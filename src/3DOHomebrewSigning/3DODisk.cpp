@@ -516,12 +516,12 @@ bool C3DODisk::CalculateOSCodeChecksum(FILE *Handle)
   fseek(Handle, iOSCodeOffset, SEEK_SET);
   fread(pOSCode, iOSCodeSize, 1, Handle);
 
-  char	uOSMD5[16];
+  u8 uOSMD5[16];
 
   CalculateMD5(pOSCode, iOSCodeSize - 64, uOSMD5);
 
   // OS MD5 value
-  char	szOSMD5[64];
+  u8 szOSMD5[64];
 
   szOSMD5[0] = 0;
 
