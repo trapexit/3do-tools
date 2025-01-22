@@ -656,7 +656,7 @@ bool C3DODisk::CalculateBootChecksum(FILE *Handle)
   // Add in the size of the boot code
   iDataSize += m_iBootCodeSize;
 
-  char	*pBootCode = new char[iDataSize];
+  u8 *pBootCode = new u8[iDataSize];
 
   if (NULL == pBootCode)
     {
