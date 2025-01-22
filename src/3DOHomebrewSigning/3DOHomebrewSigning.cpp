@@ -3,8 +3,6 @@
 
 #include <stdio.h>
 
-#include "stdafx.h"
-
 #include "3DODisk.h"
 
 int main(int argc, char *argv[]) 
