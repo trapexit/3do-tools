@@ -6,17 +6,17 @@
 #include "Utilities.h"
 
 // Defines
-static const int	s_iDiskLabelSize = 0x84;
-static const int	s_iRomTagOffset = 0x800;
-static const int	s_iRomTagSize = 32;
-static const int	s_iUsedSectorsCount = 0x50;
-static const int	s_iSignatureClear = 0x55;
-static const int	s_iSignatureSize = 0x52000;
-static const int	s_iDirEntrySize = 72;
-static const int	s_iFilenameSize = 32;
-static const int	s_iBannerStart = 0xE2;
-static const int	s_iBannerLength = 0x25858;
-static const char	s_szFiller[9] = "iamaduck";
+static const int  s_iDiskLabelSize    = 0x84;
+static const int  s_iRomTagOffset     = 0x800;
+static const int  s_iRomTagSize       = 32;
+static const int  s_iUsedSectorsCount = 0x50;
+static const int  s_iSignatureClear   = 0x55;
+static const int  s_iSignatureSize    = 0x52000;
+static const int  s_iDirEntrySize     = 72;
+static const int  s_iFilenameSize     = 32;
+static const int  s_iBannerStart      = 0xE2;
+static const int  s_iBannerLength     = 0x25858;
+static const char s_szFiller[9]       = "iamaduck";
 
 static const u8	s_uRomTags[] =
   {
