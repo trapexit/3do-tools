@@ -503,7 +503,7 @@ bool C3DODisk::CalculateOSCodeChecksum(FILE *Handle)
       return	false;
     }
 
-  char	*pOSCode = new char[iOSCodeSize];
+  u8 *pOSCode = new u8[iOSCodeSize];
 
   if (NULL == pOSCode)
     {
