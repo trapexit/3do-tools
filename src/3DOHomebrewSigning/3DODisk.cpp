@@ -881,7 +881,7 @@ bool C3DODisk::FillSignatures(FILE *Handle)
   pSignatures += 2048 - 64;
 
   // Calculate MD5 on the signatures
-  char	uSignatureMD5[16];
+  u8 uSignatureMD5[16];
 
   CalculateMD5(m_pSignatures, m_iSignatureSize - 64, uSignatureMD5);
 
