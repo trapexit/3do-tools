@@ -45,11 +45,11 @@
 #define S43 15
 #define S44 21
 
-static void MD5Transform PROTO_LIST ((UINT4 [4], char [64]));
+static void MD5Transform PROTO_LIST ((UINT4 [4], unsigned char [64]));
 static void Encode PROTO_LIST
-  ((char *, UINT4 *, unsigned int));
+  ((unsigned char *, UINT4 *, unsigned int));
 static void Decode PROTO_LIST
-  ((UINT4 *, char *, unsigned int));
+  ((UINT4 *, unsigned char *, unsigned int));
 static void MD5_memcpy PROTO_LIST ((POINTER, POINTER, unsigned int));
 static void MD5_memset PROTO_LIST ((POINTER, int, unsigned int));
 
