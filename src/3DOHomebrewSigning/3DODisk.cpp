@@ -600,7 +600,7 @@ bool C3DODisk::CalculateMiscCodeChecksum(FILE *Handle)
   fseek(Handle, iMiscCodeOffset, SEEK_SET);
   fread(pMiscCode, iMiscCodeSize, 1, Handle);
 
-  char	uMiscMD5[16];
+  u8 uMiscMD5[16];
 
   CalculateMD5(pMiscCode, iMiscCodeSize - 64, uMiscMD5);
 
