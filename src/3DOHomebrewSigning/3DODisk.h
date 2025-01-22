@@ -13,96 +13,96 @@ using namespace std;
 
 struct sRomTag
 {
-	DWORD	TagType;
-	DWORD	Offset;
-	DWORD	Length;
+  DWORD	TagType;
+  DWORD	Offset;
+  DWORD	Length;
 };
 
 class C3DODisk
 {
-	public:
-		// Constructor
-		C3DODisk();
+public:
+  // Constructor
+  C3DODisk();
 		
-		// Destructor
-		~C3DODisk();
+  // Destructor
+  ~C3DODisk();
 
-		// Sets the iso name to use
-		// Finds the needs information from the iso
-		bool SetISO(string _strFilename, bool _bGenRomTags);
+  // Sets the iso name to use
+  // Finds the needs information from the iso
+  bool SetISO(string _strFilename, bool _bGenRomTags);
 		
-		// Write changes
-		void WriteChanges();
+  // Write changes
+  void WriteChanges();
 		
-	protected:
-		// Filename of the iso image
-		string		m_strIsoName;
+protected:
+  // Filename of the iso image
+  string		m_strIsoName;
 
-		// Rom tags
-		vector<sRomTag>	m_vRomTags;
+  // Rom tags
+  vector<sRomTag>	m_vRomTags;
 
-		// launchme starting sector and size
-		int		m_iLaunchMeStart;
-		int		m_iLaunchMeSize;
+  // launchme starting sector and size
+  int		m_iLaunchMeStart;
+  int		m_iLaunchMeSize;
 
-		// signatures starting sector and size
-		int		m_iSignatureStart;
-		int		m_iSignatureSize;
+  // signatures starting sector and size
+  int		m_iSignatureStart;
+  int		m_iSignatureSize;
 
-		// boot_code starting sector and size
-		int		m_iBootCodeStart;
-		int		m_iBootCodeSize;
+  // boot_code starting sector and size
+  int		m_iBootCodeStart;
+  int		m_iBootCodeSize;
 
-		// Signature buffer
-		BYTE	*m_pSignatures;
+  // Signature buffer
+  BYTE	*m_pSignatures;
 		
-		// Boot RSA value
-		BYTE	m_uBootRSA[64];
+  // Boot RSA value
+  BYTE	m_uBootRSA[64];
 		
-		// Sector count
-		int		m_iSectorCount;
+  // Sector count
+  int		m_iSectorCount;
 		
-		// Start of the rom_tags entries
-		int		m_iLaunchMeTagStart;
-		int		m_iSignaturesTagStart;
-		int		m_iBannerTagStart;
+  // Start of the rom_tags entries
+  int		m_iLaunchMeTagStart;
+  int		m_iSignaturesTagStart;
+  int		m_iBannerTagStart;
 		
-		// Read the rom tags
-		bool ReadRomTags(FILE *Handle);
+  // Read the rom tags
+  bool ReadRomTags(FILE *Handle);
 
-		// Fix ISO
-		bool FixISO(FILE *Handle);
+  // Fix ISO
+  bool FixISO(FILE *Handle);
 
-		// Calculate boot_code checksum
-		bool CalculateBootCodeChecksum(FILE *Handle);
+  // Calculate boot_code checksum
+  bool CalculateBootCodeChecksum(FILE *Handle);
 		
-		// Calculate os_code checksum
-		bool CalculateOSCodeChecksum(FILE *Handle);
+  // Calculate os_code checksum
+  bool CalculateOSCodeChecksum(FILE *Handle);
 		
-		// Calculate misc_code checksum
-		bool CalculateMiscCodeChecksum(FILE *Handle);
+  // Calculate misc_code checksum
+  bool CalculateMiscCodeChecksum(FILE *Handle);
 		
-		// Calculate boot checksum
-		bool CalculateBootChecksum(FILE *Handle);
+  // Calculate boot checksum
+  bool CalculateBootChecksum(FILE *Handle);
 
-		// Update bannerscreen checksum
-		bool UpdateBannerChecksum(FILE *Handle);
+  // Update bannerscreen checksum
+  bool UpdateBannerChecksum(FILE *Handle);
 
-		// Calculate signatures
-		bool CalculateSignatures(FILE *Handle);
+  // Calculate signatures
+  bool CalculateSignatures(FILE *Handle);
 
-		// Fill in the signatures
-		bool FillSignatures(FILE *Handle);
+  // Fill in the signatures
+  bool FillSignatures(FILE *Handle);
 
-		// Write boot checksum
-		void WriteBootChecksum(FILE *Handle);
+  // Write boot checksum
+  void WriteBootChecksum(FILE *Handle);
 
-		// Write signatures
-		void WriteSignatures(FILE *Handle);
+  // Write signatures
+  void WriteSignatures(FILE *Handle);
 
-		// Find signature file
-		bool FindRomTagFiles(FILE *Handle);
+  // Find signature file
+  bool FindRomTagFiles(FILE *Handle);
 
-		// Generate rom tags
-		bool GenerateRomTags(FILE *Handle);
+  // Generate rom tags
+  bool GenerateRomTags(FILE *Handle);
 };
