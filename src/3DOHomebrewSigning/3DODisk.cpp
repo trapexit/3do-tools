@@ -434,12 +434,12 @@ bool C3DODisk::CalculateBootCodeChecksum(FILE *Handle)
   fseek(Handle, m_iBootCodeStart * 2048, SEEK_SET);
   fread(pBootCode, m_iBootCodeSize, 1, Handle);
 
-  char	uBootMD5[16];
+  u8 uBootMD5[16];
 
   CalculateMD5(pBootCode, m_iBootCodeSize - 64, uBootMD5);
 
   // Boot MD5 value
-  char	szBootMD5[64];
+  u8 szBootMD5[64];
 
   szBootMD5[0] = 0;
 
