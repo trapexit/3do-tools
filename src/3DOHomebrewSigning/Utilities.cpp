@@ -45,5 +45,5 @@ void CalculateRSA(char *pMessage, char *_pRSA, bool _bUseKey2)
   bdModExp(s, m, d1, n1);
 
   // Convert into an unsigned byte array
-  bdConvToOctets(s, _pRSA, 64);
+  bdConvToOctets(s, (unsigned char*)_pRSA, 64);
 }
