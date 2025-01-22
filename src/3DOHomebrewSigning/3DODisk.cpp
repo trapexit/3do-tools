@@ -748,7 +748,7 @@ bool C3DODisk::UpdateBannerChecksum(FILE *Handle)
       return	false;
     }
 
-  char	*pBannerBuffer = new char[iBannerSize - 64];
+  u8 *pBannerBuffer = new u8[iBannerSize - 64];
 
   if (NULL == pBannerBuffer)
     {
