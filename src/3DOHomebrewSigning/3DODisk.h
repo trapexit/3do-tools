@@ -13,9 +13,9 @@ using namespace std;
 
 struct sRomTag
 {
-  DWORD	TagType;
-  DWORD	Offset;
-  DWORD	Length;
+  u32 TagType;
+  u32 Offset;
+  u32 Length;
 };
 
 class C3DODisk
