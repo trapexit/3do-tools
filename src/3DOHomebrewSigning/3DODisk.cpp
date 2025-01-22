@@ -1016,7 +1016,7 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
           fread(EntryName, 1, s_iFilenameSize, Handle);
 
           // Found the launchme file, get the starting sector number
-          if (!_stricmp("launchme", EntryName))
+          if (!strcasecmp("launchme", EntryName))
             {
               // Skip the entry count
               fseek(Handle, 4, SEEK_CUR);
