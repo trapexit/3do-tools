@@ -967,6 +967,8 @@ bool C3DODisk::FindRomTagFiles(FILE *Handle)
 
       u32 NumEntries = u32Swap(Value) / s_iDirEntrySize;
 
+      printf("%u\n",NumEntries);
+
       //If the number of files in this block is invalid, exit
       if (NumEntries <= 0 || NumEntries > 28)
         {
