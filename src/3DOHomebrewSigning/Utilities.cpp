@@ -11,6 +11,7 @@ void CalculateMD5(unsigned char *_pBuffer, int _iDataSize, char *_pMD5)
   MD5Init(&sMD5Context);
 	
   MD5Update(&sMD5Context, _pBuffer, _iDataSize);
+  
   MD5Final(_pMD5, &sMD5Context);
 }
 
