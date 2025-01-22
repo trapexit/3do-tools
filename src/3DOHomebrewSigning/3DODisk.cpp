@@ -853,11 +853,11 @@ bool C3DODisk::FillSignatures(FILE *Handle)
 
   for (int iLoop = 0; iLoop < iSignatures * 2048; iLoop += 16 * 2048)
     {
-      char	Buffer[16 * 2048];
+      u8 Buffer[16 * 2048];
 
       fread(Buffer, 2048, 16, Handle);
 
-      int	iSector = iLoop / 2048;
+      int iSector = iLoop / 2048;
 
       // Do not calculate MD5 for the disk label, sector 0xE0(?), or the signature sectors.
       // 0x80E0 is sometimes ignored
